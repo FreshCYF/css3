@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>画布</title>
+    <meta name="Keywords" content="关键词，关键词">
+    <meta name="Description" content="描述">
+
+    <style type="text/css">
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            background: #000;
+        }
+        #canvas{
+            /*canvas是一个内联元素*/
+            display: block;
+            border: 3px dashed #fff;
+            margin:50px auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- 一般将画布的宽高写在内部样式中,才会起效果 -->
+    <canvas id="canvas" width='600' height="600" ></canvas>
+    <script type="text/javascript">
+        //获取canvas对象
+        var canvas=document.getElementById("canvas");
+        //设置环境
+        var ctx=canvas.getContext("2d");
+        // alert(ctx);
+        var flag=false;   //用来表示鼠标的按下和鼠标的松开
+
+        //鼠标按下的时候得到起点
+        canvas.onmousedown=function(e){
+            flag=true;
+            var e=e || event;
+            //鼠标按下在画布中的时坐标
+            var x=e.clientX-this.offsetLeft;
+            var y=e.clientY-this.offsetTop;
+            ctx.beginPath();
+
+            // alert(x+" "+y);
+            //画布的起点
+            ctx.moveTo(x,y);
+            //设置样式
+            ctx.lineWidth="20";
+            ctx.strokeStyle="red";
+        };
+
+        canvas.onmousemove=function(e){
+            if (flag) {
+
+                var e=e || event;
+                //移动的坐标
+                var x=e.clientX-this.offsetLeft;
+                var y=e.clientY-this.offsetTop;
+                // 把得到的坐标作为线条的终点
+                ctx.lineTo(x,y);
+                ctx.stroke();
+
+            };
+        };
+
+        canvas.onmouseup=function(){
+           flag=false;
+        }
+
+
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="Keywords" content="关键词，关键词">
+    <meta name="Description" content="描述">
+
+    <style type="text/css">
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        ul,ul li{
+            text-decoration: none;
+        }
+
+        .clearfix:before,.clearfix:after{
+            content: '';
+            display: table;
+        }
+        .clearfix:after{
+            clear: both;
+        }
+        .clearfix{
+            *zoom: 1;
+        }
+        .first{
+            padding-top: 80px;
+        }
+        .first .logo{
+            width: 251px;
+            height: 186px;
+            margin: 0 auto;
+            background: url(images/logo.png);
+        }
+        .first .text{
+            text-align: center;
+            margin: 25px 0;
+        }
+        .first .text img{
+            margin: 20px;
+            opacity: 0;
+        }
+        .first .info{
+            height: 49px;
+            margin: 0 auto;
+            background: url(images/info_1.png) center no-repeat;
+        }
+
+        /*第一屏动画*/
+        .first.current img{
+            margin: 0;
+            opacity: 1;
+            transition:all 2s ease;
+        }
+
+        .second{
+            position: relative;
+        }
+        .second .shield{
+            width: 424px;
+            height: 491px;
+            position: absolute;
+            top: 50%;
+            left: 50px;
+            transform:translateY(-50%);
+        }
+        .second .shield img:nth-child(1){
+            transform:translate(100px, 245px) rotate(30deg);
+        }
+         .second .shield img:nth-child(2){
+            transform:translate(225px,146px) rotate(45deg);
+        }
+         .second .shield img:nth-child(3){
+            transform:translate(124px, 68px) rotate(40deg);
+        }
+         .second .shield img:nth-child(4){
+            transform:translate(38px, 94px) rotate(20deg);
+        }
+         .second .shield img:nth-child(5){
+            transform:translate(93px, 194px) rotate(40deg);
+        }
+         .second .shield img:nth-child(6){
+            transform:translate(17px, 245px) rotate(30deg);
+        }
+         .second .shield img:nth-child(7){
+            transform:translate(230px, 145px) rotate(45deg);
+        }
+         .second .shield img:nth-child(8){
+            transform:translate(20px, 100px) rotate(25deg);
+        }
+         .second .shield img:nth-child(9){
+            transform:translate(129px, 45px) rotate(50deg);
+        }
+        .second .info{
+            width:630px ;
+            height:309px ;
+            background:url(images/info_2.png);
+            position: absolute;
+            top: 50%;
+            right: 50px;
+            transform:translateY(-50%);
+        }
+        /*第二屏动画*/
+        .second.current .shield img{
+
+            transform:translate(0,0) rotate(0);
+            transition:all 1.5s ease;
+        }
+
+        .third{
+            position: relative;
+        }
+        .third .info{
+            width: 631px;
+            height: 278px;
+            background: url(images/info_3.png);
+            position: absolute;
+            left:50px;
+            top: 50%;
+            transform:translateY(-50%);
+
+        }
+        .third .circle{
+            width: 453px;
+            height: 449px;
+            background: url(images/circle.png);
+            position: absolute;
+            top: 50%;
+            right:50px;
+            transform:translateY(-50%);
+        }
+        .third .rocket{
+            width: 203px;
+            height: 240px;
+            background: url(images/rocket.png) no-repeat;
+            position:absolute;
+            left: 0;
+            bottom: 0;
+            transform:translate(500px,300px);
+
+        }
+        .third.current .rocket{
+            transform:translate(1040px,-250px);
+            transition:all 1s ease-in;
+        }
+    </style>
+</head>
+<body>
+    <div id="fullpage">
+        <div class="section first">
+            <div class="logo"></div>
+            <div class="text">
+                <img src="images/text_1.png" alt="">
+                <img src="images/text_2.png" alt="">
+                <img src="images/text_3.png" alt="">
+                <img src="images/text_4.png" alt="">
+                <img src="images/text_5.png" alt="">
+                <img src="images/text_6.png" alt="">
+                <img src="images/text_7.png" alt="">
+                <img src="images/text_8.png" alt="">
+            </div>
+            <div class="info"></div>
+        </div>
+        <div class="section second">
+            <div class="shield">
+                <img src="images/shield_1.png" alt="">
+                <img src="images/shield_2.png" alt="">
+                <img src="images/shield_3.png" alt="">
+                <img src="images/shield_4.png" alt="">
+                <img src="images/shield_5.png" alt="">
+                <img src="images/shield_6.png" alt="">
+                <img src="images/shield_7.png" alt="">
+                <img src="images/shield_8.png" alt="">
+                <img src="images/shield_9.png" alt="">
+            </div>
+            <div class="info"></div>
+        </div>
+        <div class="section third">
+            <div class="info"></div>
+            <div class="circle"></div>
+            <div class="rocket"></div>
+
+        </div>
+        <div class="section four">第四屏</div>
+    </div>
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.fullPage.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $("#fullpage").fullpage({
+                // 设置颜色
+                sectionsColor : ['#0da5d6', '#2AB561', '#DE8910', '#16BA9D', '#0DA5D6'],
+
+                afterLoad:function(anchorLink, index){
+                    //清除之前所有的动画
+                    $('.section').removeClass('current');
+                    //延时100毫秒执行
+                    setTimeout(function(){
+                        $('.section').eq(index-1).addClass('current');
+                    }, 100);
+                }
+            });
+        })
+
+    </script>
+
+</body>
+</html>
